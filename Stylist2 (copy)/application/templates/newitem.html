@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block body_content %}
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="UTF-8">
+    <title> STYLIST</title>
+</head>
+<body>
+    <h1> Shopping List</h1>
+    <div>Add a new shopping list item:
+        <form action="{{ url_for('add') }}" method="POST">
+            <input type="text" name="shoppinglistitem">
+            <input type="submit" value="Add Item">
+        </form>
+</div>
+
+    
+
+ {% endblock body_content %}

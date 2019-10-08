@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block body_content %}
+<h1>{{ current_user.first_name}} {{ current_user.last_name }}'s Lists</h1> 
+<div>
+	<h3> Items not Bought</h3>
+	<ul>
+		{% for shoppinglist in notbought %}
+		<li style="font-size: 10pt">{{ shoppinglist.text }} <a href="{{ url_for('bought', id=shoppinglist.id) }}"> Mark as bought</a></li>
+		{% endfor %}
+	</ul>
+	<h3> Items Bought</h3>
+	<ul>
+		{% for shoppinglist in bought %}
+		<li style="font-size: 10pt">{{ shoppinglist.text }}</li>
+		{% endfor %}
+	</ul>
+</div>
+
+{% endblock body_content %}
