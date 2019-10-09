@@ -5,13 +5,18 @@
 	<h3> Items not Bought</h3>
 	<ul>
 		{% for shoppinglist in notbought %}
-		<li style="font-size: 10pt">{{ shoppinglist.text }} <a href="{{ url_for('bought', id=shoppinglist.id) }}"> Mark as bought</a></li>
+		<li style="font-size: 10pt">{{ shoppinglist.text }} <a href="{{ url_for('bought', id=shoppinglist.id) }}"> Mark as bought</a> 
+
+		<a href="{{ url_for ('delete', id=shoppinglist.id) }}">Delete item</a></li>
+
 		{% endfor %}
 	</ul>
 	<h3> Items Bought</h3>
 	<ul>
 		{% for shoppinglist in bought %}
-		<li style="font-size: 10pt">{{ shoppinglist.text }}</li>
+		<li style="font-size: 10pt">{{ shoppinglist.text }} 
+		<a href="{{ url_for('delete', id=shoppinglist.id) }}">Delete item</li>
+			
 		{% endfor %}
 	</ul>
 </div>

@@ -83,9 +83,26 @@ def add():
   db.session.commit()
   return redirect(url_for('lists'))
 
+#@app.route('/update/<id>', methods=['GET','POST'])
+#def update():
+  #toupdate = Shoppinglist.query.filter_by(id=int(id)).first()
+  #db.session.update(toupdate)
+  #db.session.commit()
+  #return redirect(url_for('lists'))
+
+
 @app.route('/bought/<id>')
 def bought(id):
   tobuy = Shoppinglist.query.filter_by(id=int(id)).first()
   tobuy.bought = True
   db.session.commit()
-  return redirect(url_for('newitem'))
+  return redirect(url_for('lists'))
+
+
+@app.route('/delete/<id>')
+def delete(id):
+  todelete = Shoppinglist.query.filter_by(id=int(id)).first()
+  db.session.delete(todelete)
+  db.session.commit()
+  return redirect(url_for('lists'))
+
