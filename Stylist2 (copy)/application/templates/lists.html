@@ -1,20 +1,27 @@
 {% extends "layout.html" %}
 {% block body_content %}
-<h1>{{ current_user.first_name}} {{ current_user.last_name }}'s Lists</h1> 
+<h1 style="font-size:50px; color:lightgrey;text-align:center;font-family:monospace;">{{ current_user.first_name}} {{ current_user.last_name }}'s lists</h1> 
+<br>
+<br>
 <div>
-	<h3> Items not Bought</h3>
+	<h3 style="font-size:30px;text-align:center;font-family: sans-serif; color:darkgrey"> Items not Bought</h3>
+	<br>
 	<ul>
 		{% for shoppinglist in notbought %}
-		<li style="font-size: 10pt">{{ shoppinglist.text }} <a href="{{ url_for('bought', id=shoppinglist.id) }}"> Mark as bought</a> 
+		<li style="font-size:12pt; color:lightgrey;text-align:center">{{ shoppinglist.text }} <a href="{{ url_for('bought', id=shoppinglist.id) }}"> Mark as bought</a> 
 
 		<a href="{{ url_for ('delete', id=shoppinglist.id) }}">Delete item</a></li>
 
 		{% endfor %}
 	</ul>
-	<h3> Items Bought</h3>
+	<br>
+	<br>
+
+	<h3 style="font-size:30px;text-align:center;font-family: sans-serif;color:darkgrey; "> Items Bought</h3>
+	<br>
 	<ul>
 		{% for shoppinglist in bought %}
-		<li style="font-size: 10pt">{{ shoppinglist.text }} 
+		<li style="font-size:12pt;color:lightgrey;text-align:center">{{ shoppinglist.text }} 
 		<a href="{{ url_for('delete', id=shoppinglist.id) }}">Delete item</li>
 			
 		{% endfor %}

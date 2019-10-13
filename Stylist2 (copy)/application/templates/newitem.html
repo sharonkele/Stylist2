@@ -7,8 +7,11 @@
     <title> STYLIST</title>
 </head>
 <body>
-    <h1> Shopping List</h1>
-    <div>Add a new shopping list item:
+	<h1 style="font-size:60px; font-family:monospace;color:lightgrey;"> Stylist</h1>
+	<br>
+	<br>
+    <h3 style="font-size:20px; font-family:sans-serif;color:lightgrey;">Add new item to shopping list </h3>
+    <div>
         <form action="{{ url_for('add') }}" method="POST">
             <input type="text" name="shoppinglistitem">
             <input type="submit" value="Add Item">
