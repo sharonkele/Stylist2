@@ -1,11 +1,12 @@
 {% extends "layout.html" %}
 {% block body_content %}
-    <h1>Login Page</h1>
+<br>
+    <h1 style="font-size:30px; color:white;text-align:left;font-family:monospace;">Login Page </h1>
     <div class="form-group">
         <form method="POST" action="">
     	    {{ form.hidden_tag() }}
     	    <div class="form-group">
-    		    {{ form.email.label }}
+    		     {{ form.email.label }} 
     		    {% if form.email.errors %}
     		    	{{ form.email }}
     		        <div class="error">

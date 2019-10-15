@@ -39,7 +39,7 @@ def login():
       if next_page:
         return redirect(next_page)
       else:
-        return redirect(url_for('home'))
+        return redirect(url_for('lists'))
   return render_template('login.html', title='Login', form=form)
   
 @app.route("/logout")

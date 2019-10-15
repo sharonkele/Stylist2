@@ -12,11 +12,11 @@
     height: 200px;
     background: #000000;
   }
-  body { background-color: #383838; }
+  body { background-color: #bababa; }
   </style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-sm bg-black navbar-dark">
+	<nav class="navbar navbar-expand-sm bg-black navbar-light">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -24,7 +24,6 @@
     <ul class="navbar-nav">
         </li>
 			{% if current_user.is_authenticated %}
-				<li class="nav-item"><a class="nav-link"href="{{ url_for('home') }}">Home</a></li>
 				<li class="nav-item"><a class="nav-link"href="{{ url_for('newitem') }}">Add Item</a></li>
 
 				<li class="nav-item"><a class="nav-link"href="{{ url_for('account') }}">Account</a></li>
