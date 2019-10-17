@@ -23,7 +23,7 @@ def register():
     user = Users(first_name=form.first_name.data, last_name=form.last_name.data,email=form.email.data, password=hashed_pw)
     db.session.add(user)                                                
     db.session.commit()
-    return redirect(url_for('lists'))
+    return redirect(url_for('newitem'))
   return render_template ('register.html', title='Register', form=form)
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -63,6 +63,10 @@ def account():
     form.email.data = current_user.email
   return render_template('account.html', title='Account', form=form)
 
+#@app.route('/deleteaccount')
+#def deleteaccount():
+
+
 @app.route('/newitem')
 @login_required
 def newitem():
@@ -72,23 +76,19 @@ def newitem():
 @app.route('/lists')
 @login_required
 def lists():
-  bought = Shoppinglist.query.filter_by(bought=True).all()
-  notbought = Shoppinglist.query.filter_by(bought=False).all()
-  return render_template('lists.html', title='Lists', bought=bought, notbought=notbought)
+ if current_user.is_authenticated:
+  bought = Shoppinglist.query.filter_by(creator=current_user, bought=True).all()
+  notbought = Shoppinglist.query.filter_by(creator=current_user, bought=False).all()
+  return render_template('lists.html', title='Lists', bought=bought, notbought=notbought, creator=current_user)
 
 @app.route('/add', methods=['POST'])
 def add():
-  tobuy = Shoppinglist(text=request.form['shoppinglistitem'], bought=False)
+  tobuy = Shoppinglist(text=request.form['shoppinglistitem'], creator=current_user, bought=False)
   db.session.add(tobuy)
   db.session.commit()
   return redirect(url_for('lists'))
 
-#@app.route('/update/<id>', methods=['GET','POST'])
-#def update():
-  #toupdate = Shoppinglist.query.filter_by(id=int(id)).first()
-  #db.session.update(toupdate)
-  #db.session.commit()
-  #return redirect(url_for('lists'))
+
 
 
 @app.route('/bought/<id>')
