@@ -1,6 +1,15 @@
 {% extends "layout.html" %}
 {% block body_content %}
-<br>
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body>
+    <br>
+    <br>
+
+    <div class='w3-container w3-margin-left'>
     <h1 style="font-size:30px; color:white;text-align:left;font-family:monospace;">Login Page </h1>
     <div class="form-group">
         <form method="POST" action="">
@@ -33,6 +42,8 @@
     		<div class="form-group">
     		    {{ form.submit }}
     	    </div>
+        </div>
+
         </form>
     	{{ form.remember.label }}
     	{{ form.remember }}

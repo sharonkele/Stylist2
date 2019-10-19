@@ -3,6 +3,7 @@ from application import app, db, bcrypt
 from application.models import Users, Shoppinglist
 from application.forms import  RegisterForm, LoginForm, UpdateAccountForm
 from flask_login import login_user, current_user, logout_user, login_required
+from application import login_manager
 
 @app.route("/")
 @app.route('/home')
@@ -63,9 +64,14 @@ def account():
     form.email.data = current_user.email
   return render_template('account.html', title='Account', form=form)
 
-#@app.route('/deleteaccount')
-#def deleteaccount():
-
+@app.route('/deleteaccount', methods=['POST'])
+@login_required
+def deleteaccount(current_user): 
+  account_to_delete = Users.query.filter_by(current_user=users.id).first()
+  db.session.delete(account_to_delete)
+  db.session.commit()
+  return redirect(url_for('home'))
+  #return render_template('deleteaccount.html', delete=account_to_delete, form=form)
 
 @app.route('/newitem')
 @login_required
@@ -87,9 +93,6 @@ def add():
   db.session.add(tobuy)
   db.session.commit()
   return redirect(url_for('lists'))
-
-
-
 
 @app.route('/bought/<id>')
 def bought(id):

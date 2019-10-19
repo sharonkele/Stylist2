@@ -1,8 +1,18 @@
 {% extends "layout.html" %}
 {% block body_content %}
-    <h1 style="font-size:40px; color:white;text-align:left;font-family:monospace;">{{ current_user.first_name}} {{ current_user.last_name }} Account Page</h1>
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body>
     <br>
     <br>
+
+    <div class='w3-container w3-margin-left'>
+    <h1 style="font-size:35px; color:white;text-align:left;font-family:monospace;">{{ current_user.first_name}} {{ current_user.last_name }}'s Account Page</h1>
+    <br>
+    
     <div class="form">
         <form method="POST" action="">
     	    {{ form.hidden_tag() }}
@@ -46,7 +56,10 @@
             </div>
             <div class="form-group">
                 {{ form.submit }}
+            <form method='POST' action="{{ url_for('deleteaccount', creator=current_user) }}">
+         <input type="submit" value="Delete account"></form>
             </div>
         </form>
     </div>
+
  {% endblock body_content %}
