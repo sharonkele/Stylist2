@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationE
 from application.models import Users, Shoppinglist
 from flask_login import current_user
 
-
+##This is the form for users to register with 
 class RegisterForm(FlaskForm):
 	first_name = StringField('First name',
 		validators=[ 
@@ -37,11 +37,12 @@ class RegisterForm(FlaskForm):
 	submit = SubmitField('Sign Up')
 
 	def validate_email(self, email):
-		user = Users.query.filter_by(email=email.data).first()
+		user = Users.query.filter_by(email=email.data).first()  # this function queries the database to make sure the email used to 
+		#sign up with is unique. 
 		if user:
 			raise ValidationError('Email already in use!')
 
-
+##This is the form that users use to log into the web application with. 
 class LoginForm(FlaskForm):
 	email = StringField('Email',
 		validators=[

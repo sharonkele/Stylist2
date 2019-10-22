@@ -78,7 +78,7 @@ def deleteaccount(current_user):
 def newitem():
   return render_template('newitem.html', title='Add New Item')
 
-
+#bought and not bought allows for the shoppling list able to be queried and return items where bought is either False or True. 
 @app.route('/lists')
 @login_required
 def lists():
@@ -94,6 +94,7 @@ def add():
   db.session.commit()
   return redirect(url_for('lists'))
 
+#Bought route allows for items that have been added to the database to return specific items
 @app.route('/bought/<id>')
 def bought(id):
   tobuy = Shoppinglist.query.filter_by(id=int(id)).first()

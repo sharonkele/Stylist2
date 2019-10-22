@@ -7,7 +7,9 @@ from datetime import datetime
 def load_user(id):
 	return Users.query.get(int(id))
 
+#Carries the database/persistence layer for the web app.
 
+## class Users will carry the information of every users at register for an account 
 class Users(db.Model, UserMixin):
 	id = db.Column(db.Integer, primary_key=True)
 	first_name = db.Column(db.String(30), nullable=False)
@@ -22,11 +24,14 @@ class Users(db.Model, UserMixin):
 			'Email: ', self.email, '\r\n',
 			'Name: ', self.first_name, '', self.last_name])
 
+#class Shoppinglist carries the information for the shopping list for every user. 
 class Shoppinglist(db.Model, UserMixin):
 	id = db.Column(db.Integer, primary_key=True)
 	text = db.Column(db.String(200), nullable=False)
 	bought = db.Column(db.Boolean)
-	user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+	user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False) 
+	# a foregin key was added to link both tables to each other. For each item 
+	#by making the coloumn nullable=False, a value has be added to that column. 
 
 	
 	def __repr__(self):
