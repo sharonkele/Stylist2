@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block body_content %}
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body>
+    <br>
+    <br>
+
+    <div class='w3-container w3-margin-left'>
+    <h1 style="font-size:30px; color:white;text-align:left;font-family:monospace;">Login Page </h1>
+    <div class="form-group">
+        <form method="POST" action="">
+    	    {{ form.hidden_tag() }}
+    	    <div class="form-group">
+    		     {{ form.email.label }} 
+    		    {% if form.email.errors %}
+    		    	{{ form.email }}
+    		        <div class="error">
+    		    	    {% for error in form.email.errors %}
+    		    	        <span>{{ error }}</span>
+    		            {% endfor %}
+    		        </div>
+    		    {% else %}
+    		        {{ form.email }}
+    		    {% endif %}
+    	    </div><br>
+    	    {{ form.password.label }}
+    		    {% if form.password.errors %}
+    		    	{{ form.password }}
+    		        <div class="error">
+    		    	    {% for error in form.password.errors %}
+    		    	        <span>{{ error }}</span>
+    		            {% endfor %}
+    		        </div>
+    		    {% else %}
+    		    	{{ form.password }}
+    		    {% endif %}
+    		</div><br>
+    		<div class="form-group">
+    		    {{ form.submit }}
+    	    </div>
+        </div>
+
+        </form>
+    	{{ form.remember.label }}
+    	{{ form.remember }}
+
+ {% endblock body_content %}
+<

@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block body_content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>CSS Website Layout</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+	.column {
+		float: left;
+		width: 50%;
+		padding: 30px;
+	}
+</style>
+
+<body>
+	<br>
+	<br>
+<b><h1 style="font-size:40px; color:white;text-align:center;font-family: monospace;">{{ current_user.first_name}} {{ current_user.last_name }}'s lists</h1></b>
+<br>
+<br>
+<div class="row">
+	<div class="column margin:left"><h3 style="font-size:30px;text-align:center;font-family:Arial,sans-serif; color:white"> Items not Bought</h3>
+	<br>
+	<ul>
+		{% for shoppinglist in notbought %}
+		<li style="font-size:12pt; color:white;text-align:center">{{ shoppinglist.text }} <form action="{{ url_for('bought', id=shoppinglist.id) }}" style="display: inline">
+         <input type="submit" value="Mark as bought">
+     </form>
+		<form action="{{ url_for('delete', id=shoppinglist.id) }}" style="display: inline">
+         <input type="submit" value="Delete item"></form></li>
+
+		{% endfor %}
+	</ul>
+</div>
+
+	<br>
+	
+	<div class="column"><h3 style="font-size:30px;text-align:center;font-family:Arial,sans-serif;color:white;"> Items Bought</h3>
+	<br>
+	<ul>
+		{% for shoppinglist in bought %}
+		<li style="font-size:12pt;color:white;text-align:center;">{{ shoppinglist.text }} 
+		<!--<a href="{{ url_for('delete', id=shoppinglist.id) }}">Delete item</li> --> <form action="{{ url_for('delete', id=shoppinglist.id) }}" style="display: inline">
+         <input type="submit" value="Delete item"></form></li>
+
+			
+		{% endfor %}
+	</div>
+	</ul>
+</div>
+</body>
+
+{% endblock body_content %}
